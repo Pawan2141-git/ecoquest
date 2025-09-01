@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  background: #000 url("water-splash.png") no-repeat top right;
+  background-size: 450px auto;
+}
+.bg-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+
+/* Navbar */
+.navbar {
+    height: 62px;
+    width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16, 16, 16, 0.7);
+ padding: 5px 80px 5px 5px;
+  border-radius: 30px;
+  border: 1px solid white;
+  margin: 15px auto;
+  font-size: 15px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 3px 3px 3px 3px rgba(225, 219, 219, 0.3);
+}
+
+.logo {
+    height: 28px;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #8ccf52;
+}
+
+.logo-img {
+  height: 100px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #8ccf52;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-top: 60px;
+  
+}
+
+.earth-img {
+  height: 587px;
+  width: 843px;
+}
+
+.content {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.content h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #817F7F;
+}
+
+.btn-primary {
+  display: block;
+  width: 330px;
+  height: 50px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #00c23c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background: #029731;
+}
+
+.btn-secondary {
+  display: block;
+  width: 330px;
+  height: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1CB0F6;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-secondary:hover {
+  background: #dededb;
+}
