@@ -1,0 +1,120 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoQuest · Contact Us</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <!-- Background accent image kept consistent with index -->
+  <div class="bg-img">
+    <!-- optional: <img src="water splash.png" class="water-img" alt="Water splash" /> -->
+  </div>
+
+  <!-- Navigation (copied from index.html for visual consistency) -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="logo.png" class="logo-img" alt="EcoQuest Logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="services.html">SERVICES</a></li>
+        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="#">REWARDS</a></li>
+        <li><a class="active" href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="contact-wrap">
+    <section class="contact-hero">
+      <div>
+        <span class="kicker">Get in touch</span>
+        <h1>We'd love to hear from you</h1>
+        <p>
+          Questions, feedback, partnership ideas, or campus pilots — drop us a line.
+          Our team usually replies within 24–48 hours.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@ecoquest.example">hello@ecoquest.example</a></p>
+          </div>
+          <div class="info-card">
+            <h3>Phone</h3>
+            <p><a href="tel:+919999999999">+91 99999 99999</a></p>
+          </div>
+          <div class="info-card">
+            <h3>Address</h3>
+            <p>Techno Main Salt Lake, Kolkata, IN</p>
+          </div>
+        </div>
+
+        <div class="socials">
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">YouTube</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <form class="contact-form" action="#" method="post">
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="field full">
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic" required>
+              <option value="">Choose a topic…</option>
+              <option>General</option>
+              <option>Partnership</option>
+              <option>Campus Pilot</option>
+              <option>Support</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Tell us a bit more…" required></textarea>
+          </div>
+          <div class="field full">
+            <button class="btn-send" type="submit">SEND MESSAGE</button>
+            <p class="hint">By sending, you agree to our respectful-use policy.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="media-box" aria-label="Map">
+      <!-- Replace the src with your location or remove this block if not needed -->
+      <iframe
+        title="EcoQuest location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.424154544201!2d88.412!3d22.572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTechno%20Main%20Salt%20Lake!5e0!3m2!1sen!2sin!4v1710000000000"></iframe>
+    </section>
+
+    <section class="faq">
+      <h2 style="color:#8ccf52;margin:8px 0 10px">FAQs</h2>
+      <details>
+        <summary>How soon will you reply?</summary>
+        <p>Usually within 24–48 hours on weekdays.</p>
+      </details>
+      <details>
+        <summary>Can we request a demo for our college?</summary>
+        <p>Yes! Choose the “Campus Pilot” topic and share details; we’ll coordinate a slot.</p>
+      </details>
+    </section>
+  </main>
+</body>
+</html>

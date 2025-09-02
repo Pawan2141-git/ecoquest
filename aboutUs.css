@@ -42,6 +42,54 @@ img{
     margin:0 auto
 }
 
+/* Navbar */
+.navbar {
+  height: 62px;
+  width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16, 16, 16, 0.7);
+  padding: 5px 80px 5px 5px;
+  border-radius: 30px;
+  border: 1px solid white;
+  margin: 15px auto;
+  font-size: 15px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 3px 3px 3px 3px rgba(225, 219, 219, 0.3);
+}
+
+.logo {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #8ccf52;
+}
+
+.logo-img {
+  height: 100px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #8ccf52;
+  font-weight: bold;
+}
+
 /* Section basics */
 section{
     padding:56px 0
