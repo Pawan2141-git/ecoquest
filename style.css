@@ -12,6 +12,7 @@ body {
   background: #000 url("water-splash.png") no-repeat top right;
   background-size: 450px auto;
 }
+
 .bg-img {
   position: absolute;
   top: 0;
@@ -21,16 +22,15 @@ body {
   opacity: 0.9;
 }
 
-
 /* Navbar */
 .navbar {
-    height: 62px;
-    width: 1100px;
+  height: 62px;
+  width: 1100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgba(16, 16, 16, 0.7);
- padding: 5px 80px 5px 5px;
+  padding: 5px 80px 5px 5px;
   border-radius: 30px;
   border: 1px solid white;
   margin: 15px auto;
@@ -40,7 +40,7 @@ body {
 }
 
 .logo {
-    height: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   font-size: 22px;
@@ -67,6 +67,7 @@ body {
 
 .nav-links li a:hover {
   color: #8ccf52;
+  font-weight: bold;
 }
 
 /* Hero Section */
@@ -75,23 +76,47 @@ body {
   justify-content: left;
   align-items: center;
   padding-top: 60px;
-  
+  height: 100vh;
+  position: relative;
+}
+
+.earth {
+  position: relative;
+  display: inline-block;
+  transition: all 1s ease;
 }
 
 .earth-img {
+  position: relative;
+  z-index: 2;
   height: 587px;
   width: 843px;
+  filter: drop-shadow(0px 0px 160px #00FF88) 
+          drop-shadow(0px 0px 160px #00FF88);
+  transition: all 1s ease;
+}
+
+.star-behind {
+  position: absolute;
+  top: 400px;
+  left: 250px;
+  transform: translate(-50%, -50%);
+  width: 431px;
+  height: 441px;
+  z-index: 1;
+  opacity: 0.7;
+  filter: drop-shadow(0px 0px 20px #00ff73);
 }
 
 .content {
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 1s ease;
 }
-
 
 .content h1 {
   font-size: 36px;
@@ -100,6 +125,7 @@ body {
   color: #817F7F;
 }
 
+/* Buttons */
 .btn-primary {
   display: block;
   width: 330px;
@@ -112,10 +138,14 @@ body {
   color: #fff;
   font-size: 13px;
   font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(0, 194, 60, 0.6);
 }
 
 .btn-primary:hover {
-  background: #029731;
+  background: #02a935;
+  box-shadow: 0px 0px 20px rgba(0, 255, 115, 0.9),
+              0px 0px 40px rgba(0, 255, 115, 0.7);
 }
 
 .btn-secondary {
@@ -134,3 +164,7 @@ body {
 .btn-secondary:hover {
   background: #dededb;
 }
+
+
+
+
