@@ -9,8 +9,14 @@ body {
   font-family: Arial, sans-serif;
   color: #fff;
   overflow-x: hidden;
-  background: #000 url("water-splash.png") no-repeat top right;
+  background: #000  no-repeat top right;
   background-size: 450px auto;
+}
+
+/* Header container to center navbar horizontally */
+header {
+  display: flex;
+  justify-content: center;
 }
 
 .bg-img {
@@ -19,24 +25,38 @@ body {
   right: 0;
   width: 450px;
   z-index: -1;
-  opacity: 0.9;
+  pointer-events: none;
+}
+
+.water-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: hard-light;
+  opacity: 0.6;
+  filter:  sepia(0.3) saturate(300%) hue-rotate(170deg);
 }
 
 /* Navbar */
 .navbar {
-  height: 62px;
-  width: 1100px;
+  height: 55px;
+  width: calc(100% - 40px);
+  max-width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(16, 16, 16, 0.7);
+  background: radial-gradient(circle at 50% -35%, rgba(172, 172, 172, 1) -282%, rgba(0, 0, 0, 1) 90%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 5px 80px 5px 5px;
-  border-radius: 30px;
-  border: 1px solid white;
+  border-radius: 50px;
+  
   margin: 15px auto;
-  font-size: 15px;
-  font-family: "Segoe UI", sans-serif;
-  box-shadow: 3px 3px 3px 3px rgba(225, 219, 219, 0.3);
+  font-size: 13px;
+  font-family: "Segoe UI", iniriasans-serif;
+  box-shadow: 0px 0px 18px 0px rgba(139, 139, 139, 0.48);
+  z-index: 100;
 }
 
 .logo {
@@ -67,34 +87,31 @@ body {
 
 .nav-links li a:hover {
   color: #8ccf52;
-  font-weight: bold;
+  
 }
 
 /* Hero Section */
 .hero {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
-  padding-top: 60px;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-.earth {
-  position: relative;
-  display: inline-block;
-  transition: all 1s ease;
-}
 
-.earth-img {
+
+.earth-model {
   position: relative;
   z-index: 2;
-  height: 587px;
-  width: 843px;
-  filter: drop-shadow(0px 0px 160px #00FF88) 
-          drop-shadow(0px 0px 160px #00FF88);
+  height: 450px;
+  width: 500px;
+  
   transition: all 1s ease;
+  transform-origin: center center;
 }
+
 
 .star-behind {
   position: absolute;
@@ -109,20 +126,30 @@ body {
 }
 
 .content {
-  max-width: 400px;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   transition: all 1s ease;
+  margin-top: -20px;
+  margin-right: -10px;
+  
 }
 
 .content h1 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #817F7F;
+  color: #ffffff;
+  white-space: nowrap;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.6),
+               0px 0px 18px rgba(0, 0, 0, 0.45);
+  background: linear-gradient(90deg, #a8ffbf 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Buttons */
@@ -144,8 +171,7 @@ body {
 
 .btn-primary:hover {
   background: #02a935;
-  box-shadow: 0px 0px 20px rgba(0, 255, 115, 0.9),
-              0px 0px 40px rgba(0, 255, 115, 0.7);
+  
 }
 
 .btn-secondary {

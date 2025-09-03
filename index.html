@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoQuest</title>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
   <div class="bg-img">
-    <img src="water splash.png" class="water-img" alt="Water splash image"> 
+    <img src="water-splash.png" class="water-img" alt="Water splash image"> 
   </div>
               
   <!-- Navigation Bar -->
@@ -31,10 +32,23 @@
   <!-- Hero Section -->
   <div class="hero" id="hero1">
     <div class="earth">
-      <!-- Star behind Earth -->
+      <!-- Star -->
       <img src="getstars.png" class="star-behind" alt="green star">
-      <!-- Earth -->
-      <img src="earth.png" class="earth-img" alt="Glowing Earth">
+      <!-- 3D Earth Model -->
+      <model-viewer
+        src="models/earth/scene.gltf"
+        alt="3D Earth"
+        class="earth-model"
+        shadow-intensity="0"
+        exposure="1"
+        interaction-prompt="none"
+        auto-rotate
+        rotation-per-second="10deg"
+        camera-controls
+        disable-zoom
+        touch-action="none"
+        style="background: transparent;"
+      ></model-viewer>
     </div>
 
     <div class="her-content">
@@ -45,5 +59,21 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var mv = document.querySelector('model-viewer.earth-model');
+      if (!mv) return;
+      function disableInteractionOnce(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        mv.removeAttribute('camera-controls');
+        mv.setAttribute('auto-rotate', '');
+        mv.setAttribute('interaction-prompt', 'none');
+        mv.style.touchAction = 'none';
+      }
+      mv.addEventListener('pointerdown', disableInteractionOnce, { once: true, passive: false });
+      mv.addEventListener('touchstart', disableInteractionOnce, { once: true, passive: false });
+    });
+  </script>
 </body>
 </html>
