@@ -178,6 +178,7 @@ header {
 
 .btn-primary:hover {
   background: #02a935;
+  cursor:pointer;
 
 }
 
@@ -196,6 +197,7 @@ header {
 
 .btn-secondary:hover {
   background: #dededb;
+  cursor:pointer;
 }
 .modal {
   display: none;

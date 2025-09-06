@@ -114,7 +114,11 @@
         color:#e9ffe9;
         opacity:.9
     }
-
+    .info-card a{
+        text-decoration: none;
+        color:#e9ffe9;
+        opacity:.9
+    }
     /* Map/Video box visually echoes hero image framing */
     .media-box{
         margin-top:22px;
