@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EcoQuest • Rewards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rewards.css">
+</head>
+<body>
+    <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="logo.png" class="logo-img" alt="EcoQuest Logo"> 
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="aboutUs.html">ABOUT</a></li>
+        <li><a href="#">SERVICES</a></li>
+        <li><a href="#">COMMUNITY</a></li>
+        <li><a href="rewards.html">REWARDS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="bg-radial"></div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="chip"><span class="dot"></span> EcoPoints • Badges • Real Rewards</div>
+      <h1>Earn EcoPoints. Redeem Real-World Impact.</h1>
+      <p class="lead">
+        Complete story missions, quizzes, mini-games, and real-life eco projects. Climb leaderboards, unlock badges, and redeem EcoPoints for sustainable products, discounts, and NGO experiences.
+      </p>
+    </header>
+
+    <!-- TOP ROW: Points + How to earn + Tiers -->
+    <section class="grid" aria-label="overview">
+      <div class="panel points col-6">
+        <div>
+          <p class="lead" style="margin:0 0 6px 0;">Your EcoPoints</p>
+          <strong id="points">1,250</strong>
+          <p style="margin-top:8px">Next reward at <b>1,500</b> points</p>
+          <div class="progress" style="margin-top:10px"><i id="progressBar" style="width: 82%"></i></div>
+        </div>
+        <div>
+          <div class="tag">Badge: Water Warrior</div>
+          <div class="tag">Level 7</div>
+        </div>
+      </div>
+
+      <div class="panel col-6">
+        <h2>How you earn</h2>
+        <div class="earn-list">
+          <div class="earn-item">
+            <div class="icon">🏁</div>
+            <div><h4>Finish a mission</h4><p>Story-based modules (waste, water, biodiversity, air, laws)</p></div>
+          </div>
+          <div class="earn-item">
+            <div class="icon">🧠</div>
+            <div><h4>Quiz & mini-games</h4><p>Answer quizzes, clear bonus mini-games for extra EcoPoints</p></div>
+          </div>
+          <div class="earn-item">
+            <div class="icon">🌱</div>
+            <div><h4>Real-life projects</h4><p>Upload proof of actions (tree plantation, segregation, water hacks)</p></div>
+          </div>
+          <div class="earn-item">
+            <div class="icon">🏆</div>
+            <div><h4>Leaderboards</h4><p>Rank up with peers; earn streak and rank bonuses</p></div>
+          </div>
+        </div>
+        <p class="note" style="margin-top:10px">
+          Redemptions include eco-products, coupons, saplings, and NGO workshops/field trips (per partnerships). 
+        </p>
+      </div>
+
+      <div class="panel col-12">
+        <h2>Reward Tiers</h2>
+        <div class="toolbar" style="margin-top:4px">
+          <span class="tag">Bronze • 0–999</span>
+          <span class="tag">Silver • 1,000–2,499</span>
+          <span class="tag">Gold • 2,500–4,999</span>
+          <span class="tag">Platinum • 5,000+</span>
+        </div>
+        <p class="note" style="margin-top:8px">Higher tiers unlock better discounts, early access drops, and exclusive NGO experiences.</p>
+      </div>
+    </section>
+
+    <!-- TOOLBAR -->
+    <section class="panel" style="margin-top:16px">
+      <div class="row">
+        <div class="toolbar">
+          <input id="search" class="input" placeholder="Search rewards (e.g., bottle, coupon, sapling)" />
+          <select id="filter" class="input">
+            <option value="all">All categories</option>
+            <option value="product">Sustainable products</option>
+            <option value="coupon">Brand coupons</option>
+            <option value="experience">NGO experiences</option>
+          </select>
+          <select id="sort" class="input">
+            <option value="points-asc">Points: Low → High</option>
+            <option value="points-desc">Points: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+          </select>
+        </div>
+        <button class="btn ghost" id="viewBadges">My Badges</button>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section class="catalog" id="catalog" aria-label="rewards catalog" style="margin-top:12px"></section>
+
+    <!-- LEADERBOARD PREVIEW -->
+    <section class="panel" style="margin-top:18px">
+      <h2>Leaderboard (School/Batch)</h2>
+      <table aria-label="leaderboard">
+        <thead><tr><th>#</th><th>Student</th><th>Badge</th><th>EcoPoints</th></tr></thead>
+        <tbody id="lb">
+          <tr><td>1</td><td>Rahul J</td><td>Waste Wizard</td><td>1,860</td></tr>
+          <tr><td>2</td><td>Shraddha K.</td><td>Water Warrior</td><td>1,740</td></tr>
+          <tr><td>3</td><td>You</td><td>Water Warrior</td><td>1,240</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:8px">Project uploads may be verified by teachers and AI checks before points are finalized.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="grid" style="margin-top:18px">
+      <div class="panel col-6">
+        <h2>FAQs</h2>
+        <p><b>How do I redeem?</b><br/>Choose an item, hit Redeem, confirm. You’ll get a code or pickup instructions.</p>
+        <p><b>How are projects verified?</b><br/>Teacher validation and AI/image checks; fraudulent entries are rejected.</p>
+        <p><b>Low-bandwidth support?</b><br/>Optimized media and upload limits keep the app usable on weak networks.</p>
+      </div>
+      <div class="panel col-6">
+        <h2>Partners & NGOs</h2>
+        <p>We collaborate with eco-brands for discounts and with NGOs for workshops/field trips. Want to partner? <a href="contact.html" style="color:#a8ffb0">Contact us</a>.</p>
+        <div class="toolbar" style="margin-top:8px">
+          <span class="tag">Reusable</span>
+          <span class="tag">Recyclable</span>
+          <span class="tag">Low-carbon</span>
+          <span class="tag">Tree kits</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- REDEEM MODAL -->
+  <dialog id="modal">
+    <div class="modal-head">
+      <strong id="modalTitle">Redeem</strong>
+      <button class="btn ghost" onclick="closeModal()">Close</button>
+    </div>
+    <div class="modal-body">
+      <p id="modalDesc"></p>
+      <p><b>Cost:</b> <span id="modalCost" class="price"></span> EcoPoints</p>
+      <div class="note">By redeeming, your points will decrease and you’ll receive a code or pickup instructions. Codes can be used with partner brands or on campus distribution drives.</div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" id="confirmRedeem">Confirm Redeem</button>
+    </div>
+  </dialog>
+  <script src="rewards.js"></script>
+</body>
+</html>
