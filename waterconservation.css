@@ -1,0 +1,280 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #E8F9FF;
+  background: #000;
+  overflow-x: hidden;
+}
+
+.wc-bg {
+  position: fixed;
+  inset: 0;
+  background: url('backgroundimg.png') center/cover no-repeat, #010a12;
+  filter: saturate(120%) brightness(0.5);
+  z-index: -2;
+}
+
+.wc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 28px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-left, .wc-actions {
+  min-width: 120px;
+}
+
+.wc-header h1 {
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+  flex: 0.4 ;
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(90deg, #rgba, #B3FFFF);
+
+}
+
+.wc-btn {
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #B3FFFF;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.wc-canvas {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  padding: 20px 10px 60px;
+}
+
+/* Neon decor */
+.neon-bubble {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 247, 255, 0.2), rgba(0,0,0,0));
+  filter: drop-shadow(0 0 24px rgba(0, 247, 255, 0.6));
+  z-index: -1;
+}
+.nb-1 { top: -40px; left: -60px; }
+.nb-2 { bottom: -30px; right: -40px; }
+.nb-3 { top: 35%; right: 20%; width: 200px; height: 200px; }
+
+/* Levels layout */
+.level-path {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  width: 100%;
+  min-height: 400px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 238, 255, 0.6) rgba(0, 0, 0, 0.2);
+}
+
+.level-path::-webkit-scrollbar {
+  height: 12px;
+}
+
+.level-path::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.level-path::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 238, 255, 0.6);
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.level {
+  position: relative;
+  margin: 0 40px;
+  flex-shrink: 0;
+}
+
+.island {
+  width: 280px;
+  height: 280px;
+  background: url('island.png') center/contain no-repeat;
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 40px rgba(0, 238, 255, 0.9));
+  transition: transform .25s ease, filter .25s ease, opacity .25s ease;
+}
+
+.island:hover { transform: translateY(-4px) scale(1.05); }
+
+/* Lock state styling */
+.level.locked .island {
+  cursor: not-allowed;
+  opacity: 0.1;
+  filter: grayscale(40%) brightness(0.85) drop-shadow(0 0 8px rgba(0,0,0,0.8));
+}
+
+/* Current level highlight styling */
+.level.current .island {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.9)) brightness(1.2);
+  animation: pulse-current 2s infinite alternate;
+}
+
+
+
+@keyframes pulse-current {
+  0% { filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.9)) brightness(1.2); }
+  100% { filter: drop-shadow(0 0 40px rgba(0, 255, 255, 1)) brightness(1.3); }
+}
+
+/* Level labels using data-level attribute */
+.level::before {
+  content: 'Level ' attr(data-level);
+  position: absolute;
+  left: 50%;
+  bottom: 50px; /* Position even closer to the bottom of the island */
+  transform: translate(-50%, 100%); /* Move text below the island */
+  font-weight: 700;
+  font-size: 16px; /* Slightly larger font */
+  letter-spacing: 0.5px;
+  color: #CFFBFF;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 18px rgba(0, 180, 255, 0.6);
+  z-index: 1; /* Ensure text appears above other elements */
+}
+
+/* Connector lines between levels */
+.level::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 60px;
+  height: 6px;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(0, 238, 255, 0.9), rgba(0, 238, 255, 0.3));
+  opacity: 0.9;
+  filter: drop-shadow(0 0 15px rgba(0, 238, 255, 0.8));
+  z-index: -1;
+}
+
+.level:last-child::after { display: none; }
+
+/* Ensure all islands are visible in the horizontal layout */
+.wc-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .island { width: 220px; height: 220px; }
+  .level::after { width: 40px; }
+  .level-path { min-height: 300px; }
+}
+
+@media (max-width: 600px) {
+  .island { width: 180px; height: 180px; }
+  .level::after { width: 30px; }
+  .level { margin: 0 25px; }
+  .level-path { min-height: 250px; padding: 10px; }
+}
+
+/* Extra neon vector accents */
+.wc-canvas::before,
+.wc-canvas::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, rgba(0, 255, 210, 0.35), rgba(0,0,0,0));
+  filter: drop-shadow(0 0 24px rgba(0, 255, 210, 0.7));
+}
+.wc-canvas::before { width: 260px; height: 260px; top: 8%; left: 10%; }
+.wc-canvas::after { width: 200px; height: 200px; bottom: 12%; right: 14%; }
+
+/* Additional neon vectors */
+.neon-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
+  height: 2px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.9));
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.neon-line-1 { top: 20%; left: 0; width: 30%; transform: rotate(-15deg); }
+.neon-line-2 { top: 60%; right: 0; width: 25%; transform: rotate(20deg); }
+.neon-line-3 { bottom: 30%; left: 20%; width: 40%; transform: rotate(5deg); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Floating neon particles */
+.neon-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.9), transparent);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.8));
+  animation: float 4s ease-in-out infinite;
+}
+
+.particle-1 { top: 15%; left: 15%; animation-delay: 0s; }
+.particle-2 { top: 25%; right: 20%; animation-delay: 1s; }
+.particle-3 { bottom: 20%; left: 30%; animation-delay: 2s; }
+.particle-4 { bottom: 40%; right: 10%; animation-delay: 3s; }
+.particle-5 { top: 50%; left: 5%; animation-delay: 1.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.2); }
+}
+
+/* Neon wave effects */
+.neon-wave {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 255, 255, 0.6), 
+    rgba(0, 255, 255, 0.8), 
+    rgba(0, 255, 255, 0.6), 
+    transparent
+  );
+  filter: drop-shadow(0 0 16px rgba(0, 255, 255, 0.7));
+  animation: wave 6s linear infinite;
+}
+
+.wave-1 { top: 30%; animation-delay: 0s; }
+.wave-2 { top: 70%; animation-delay: 2s; }
+
+@keyframes wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+
