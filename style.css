@@ -275,3 +275,13 @@ header {
   color: #adff2f;
   text-decoration: none;
 }
+.bottom-btn {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  margin: 40px 0;          /* space from content above and below */
+}
+
+.bottom-btn .btn-primary {
+  width: 330px;            /* same width as other buttons */
+  height: 50px;
+}

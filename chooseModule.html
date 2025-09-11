@@ -58,6 +58,40 @@
       
     </section>
   </div>
+  <script>
+  // Module mapping
+  const modulePages = {
+    water: "waterModule.html",
+    air: "airModule.html",
+    waste: "wasteModule.html",
+    laws: "lawsModule.html",
+    life: "biodiversityModule.html"
+  };
+
+  // Add click listeners
+  document.querySelectorAll(".startBtn").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const moduleKey = this.parentElement.dataset.key;
+      const targetPage = modulePages[moduleKey];
+
+      // Check login status
+      const isSignedIn = localStorage.getItem("isSignedIn");
+
+      if (isSignedIn === "true") {
+        // ✅ User signed in → go to module
+        window.location.href = targetPage;
+      } else {
+        // ❌ Not signed in → open sign-in modal
+        localStorage.setItem("authMessage", "⚠️ You didn’t sign in yet!");
+        window.location.href = "index.html#signin"; 
+        // (redirects back to landing page where modal exists)
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>
