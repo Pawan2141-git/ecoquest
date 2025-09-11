@@ -1,0 +1,135 @@
+html,body{
+    height:100%
+}
+
+body{
+    margin:0;
+    color:#fff;
+    background:#000000;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+    overflow-x:hidden
+}
+
+/* Corner crystal decorations */
+.corner{
+    position:fixed; 
+    width:285,63;
+    height:273.94px;
+    pointer-events:none; 
+    filter:drop-shadow(0 0 24px rgba(0,255,120,.55)); 
+    z-index:0
+}
+.corner.tl{
+    top:0; 
+    left:0
+}
+.corner.tr{
+    top:0; 
+    right:0;
+}
+
+header{
+    text-align:center; 
+    margin:6px 0 28px
+}
+
+header h1{
+    font-family:"Press Start 2P", ui-monospace, monospace;
+    font-weight: 400;
+    font-style: regular;
+    line-height: 100%;
+    letter-spacing:2px; 
+    font-size:44.21px; 
+    margin:70px 0 12px; 
+    background: linear-gradient(90deg, #29E100 0%, #DDDDDD 49.52%, #29E100 100%);
+    -webkit-background-clip: text; /* For Safari/Chrome */
+    -webkit-text-fill-color: transparent; /* Makes text show gradient */
+    background-clip: text; /* For Firefox */
+    color: transparent;
+    text-shadow:0 0 10px rgba(29,252,122,.9), 0 0 30px rgba(29,252,122,.35)
+}
+
+header p{
+    font-family:"Poppins";
+    margin-top:30px; 
+    color:rgba(195, 195, 195, 1);
+    font-size:25.24px;
+    line-height:100%;
+ 
+    font-weight:400; 
+    font-size:18px
+}
+
+/* Grid: 3 on first row, 2 centered on second */
+
+.grid{
+    display:grid; 
+    gap:28px; 
+    grid-template-columns:repeat(12,1fr);
+    margin-top:100px;
+    margin-left:100px;
+}
+.area-a,.area-b,.area-c{
+    grid-column:span 3
+}
+.spacer{
+    grid-column:span 1
+}
+.area-d,.area-e{
+    margin-left: 145px;
+    grid-column: span 4;
+}
+
+/* Module card as image with overlay link */
+.module{
+    position:relative; 
+    border-radius:26px; 
+    overflow:visible
+}
+
+/* Make the whole card clickable */
+.module a.hit{
+    position:absolute; 
+    inset:0; border-radius:26px; 
+    outline:0;
+}
+
+.module a.hit:focus{
+    box-shadow:0 0 0 3px rgba(29,252,122,.7) inset
+}
+/* Optional precise clickable Start button overlay (tuned to the PNGs) */
+.module a.startBtn{
+    position:absolute; 
+    left:50%; 
+    transform:translateX(-50%); 
+    bottom:34px; 
+    width:150px; 
+    height:48px; 
+    border-radius:999px
+}
+
+
+/* Responsive */
+
+@media (max-width:1100px){
+    .area-a,.area-b,.area-c,.area-d,.area-e{
+        grid-column:span 6
+    }
+    .spacer{
+        display:none
+    }
+}
+@media (max-width:720px){
+    header h1{
+        font-size:30px
+    }
+    header p{
+        font-size:16px
+    }
+    .grid{
+        grid-template-columns:repeat(1,1fr)
+    }
+    .area-a,.area-b,.area-c,.area-d,.area-e{
+        grid-column:span 1
+    }
+}
