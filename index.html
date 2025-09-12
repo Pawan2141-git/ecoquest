@@ -231,6 +231,21 @@
       mv.addEventListener('touchstart', disableInteractionOnce, { once: true, passive: false });
     });
   </script>
+
+  <!-- 🔹 Bottom Choose Module Button -->
+  <div class="bottom-btn">
+    <button id="bottomChooseModuleBtn" class="btn-primary">
+      Choose Modules
+    </button>
+  </div>
+
+  <script>
+    document.getElementById("bottomChooseModuleBtn")
+      .addEventListener("click", () => {
+        window.location.href = "chooseModule.html";
+      });
+  </script>
+
   <script src="ecoquest-auth.js" defer></script>
 </body>
 </html>
