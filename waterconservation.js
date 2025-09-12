@@ -15,12 +15,10 @@
       item.querySelector('.island').setAttribute('aria-disabled', 'true');
     }
     
-    // Mark the highest unlocked level as current
     if (level === maxUnlocked) {
       item.classList.add('current');
     }
 
-    // Compute vector to next item and add water droplets
     var next = items[idx + 1];
     if (next) {
       var getPos = function (el) {
@@ -34,30 +32,25 @@
       if (!isNaN(a.x) && !isNaN(a.y) && !isNaN(b.x) && !isNaN(b.y)) {
         var dx = b.x - a.x;
         var dy = b.y - a.y;
-        // Convert percentage delta into px length based on viewport
         var len = Math.sqrt(Math.pow(dx * window.innerWidth / 100, 2) + Math.pow(dy * window.innerHeight / 100, 2));
         var angle = Math.atan2((dy * window.innerHeight / 100), (dx * window.innerWidth / 100)) * 180 / Math.PI;
         item.style.setProperty('--len', Math.max(120, Math.min(500, len)) + 'px');
         item.style.setProperty('--angle', angle + 'deg');
         
-        // Add water droplet elements with proper positioning
         var droplet1 = document.createElement('div');
         droplet1.className = 'water-droplet';
-        // Set style to ensure it's positioned correctly
         droplet1.style.transform = 'translateY(-50%) rotate(' + angle + 'deg)';
         item.appendChild(droplet1);
         
         var droplet2 = document.createElement('div');
         droplet2.className = 'water-droplet';
-        // Set style to ensure it's positioned correctly
         droplet2.style.transform = 'translateY(-50%) rotate(' + angle + 'deg)';
         item.appendChild(droplet2);
       }
     }
   });
 
- 
-  // Clicking the Start button on the current level: complete and unlock next
+  // Clicking the Start button on the current level
   path.addEventListener('click', function (e) {
     var btn = e.target.closest('.Start-btn');
     if (!btn) return;
@@ -68,18 +61,17 @@
     var current = parseInt(li.getAttribute('data-level') || '0', 10);
     var next = current + 1;
 
+    
     if (next > maxUnlocked) {
       maxUnlocked = next;
       localStorage.setItem(STORAGE_KEY, String(maxUnlocked));
 
-      // Unlock next li if it exists
       var nextLi = path.querySelector('.level[data-level="' + next + '"]');
       if (nextLi) {
         nextLi.classList.remove('locked');
         var nextBtn = nextLi.querySelector('.island');
         if (nextBtn) nextBtn.removeAttribute('aria-disabled');
 
-        // Update current level highlight
         document.querySelectorAll('.level.current').forEach(function (el) {
           el.classList.remove('current');
         });
@@ -97,5 +89,3 @@
     });
   }
 })();
-
-

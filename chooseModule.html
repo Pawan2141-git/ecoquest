@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="chooseModule.css">
 </head>
 <body>
-  <!-- Corner crystals (use your provided PNGs) -->
+  <!-- Corner crystals -->
   <img src="Group 2.png" alt="decor" class="corner tl" />
   <img src="Group 1.png" alt="decor" class="corner tr" />
 
@@ -39,9 +39,9 @@
             <a class="hit" href="#" aria-label="Open Waste module"></a>
             <a class="startBtn" href="#" aria-label="Start Waste"></a>
         </figure>
-      
 
         <div class="spacer"></div>
+
         <!-- D: Environmental Laws -->
         <figure class="module area-d" data-key="laws">
             <img src="Environmental Laws.png" alt="Defend the laws – guard the Earth" />
@@ -55,7 +55,6 @@
             <a class="hit" href="#" aria-label="Open Biodiversity module"></a>
             <a class="startBtn" href="#" aria-label="Start Biodiversity"></a>
         </figure>
-      
     </section>
   </div>
 
@@ -63,16 +62,16 @@
   <button class="close-btn" onclick="window.location.href='index.html'">✕ Close</button>
   
   <script>
-  // Module mapping
+  // ✅ Mapping module keys to actual HTML files
   const modulePages = {
-    water: "waterModule.html",
+    water: "waterconservation.html",   // 🔥 updated file name
     air: "airModule.html",
     waste: "wasteModule.html",
     laws: "lawsModule.html",
     life: "biodiversityModule.html"
   };
 
-  // Add click listeners
+  // Add click listeners to all Start buttons
   document.querySelectorAll(".startBtn").forEach(btn => {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -80,22 +79,13 @@
       const moduleKey = this.parentElement.dataset.key;
       const targetPage = modulePages[moduleKey];
 
-      // Check login status
-      const isSignedIn = localStorage.getItem("isSignedIn");
-
-      if (isSignedIn === "true") {
-        // ✅ User signed in → go to module
-        window.location.href = targetPage;
+      if (targetPage) {
+        window.location.href = targetPage; // ✅ redirect to correct module file
       } else {
-        // ❌ Not signed in → open sign-in modal
-        localStorage.setItem("authMessage", "⚠️ You didn’t sign in yet!");
-        window.location.href = "index.html#signin"; 
-        // (redirects back to landing page where modal exists)
+        alert("⚠️ Module not available yet!");
       }
     });
   });
-</script>
-
-
+  </script>
 </body>
 </html>
