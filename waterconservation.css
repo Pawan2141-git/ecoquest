@@ -13,9 +13,55 @@ body {
 .wc-bg {
   position: fixed;
   inset: 0;
-  background: url('backgroundimg.png') center/cover no-repeat, #010a12;
-  filter: saturate(120%) brightness(0.5);
+  background: linear-gradient(135deg, #001428 0%, #00072b 50%, #000428 100%);
   z-index: -2;
+  overflow: hidden;
+}
+
+.wc-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0, 195, 255, 0.15) 0%, rgba(0, 78, 255, 0.05) 40%, transparent 70%);
+  z-index: -1;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.wc-bg::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: linear-gradient(45deg, transparent 45%, rgba(0, 247, 255, 0.1) 50%, transparent 55%);
+  z-index: -1;
+  animation: sweep-glow 15s linear infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sweep-glow {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .wc-header {
@@ -28,7 +74,8 @@ body {
   margin: 0 auto;
 }
 
-.header-left, .wc-actions {
+.header-left,
+.wc-actions {
   min-width: 120px;
 }
 
@@ -36,13 +83,26 @@ body {
   font-weight: 700;
   font-size: 28px;
   text-align: center;
-  flex: 0.4 ;
+  flex: 0.4;
   background: rgba(0, 229, 255, 0.15);
   border: 1px solid rgba(0, 229, 255, 0.35);
   border-radius: 999px;
   backdrop-filter: blur(8px);
-  background: linear-gradient(90deg, #rgba, #B3FFFF);
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.2), rgba(179, 255, 255, 0.3));
+  padding: 10px 20px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 180, 255, 0.6);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), inset 0 0 10px rgba(0, 229, 255, 0.3);
+  animation: header-glow 3s ease-in-out infinite alternate;
+}
 
+@keyframes header-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5), inset 0 0 10px rgba(0, 229, 255, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.7), inset 0 0 15px rgba(0, 229, 255, 0.5);
+  }
 }
 
 .wc-btn {
@@ -53,6 +113,15 @@ body {
   padding: 8px 14px;
   cursor: pointer;
   backdrop-filter: blur(8px);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4), inset 0 0 5px rgba(0, 229, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.wc-btn:hover {
+  background: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.6), inset 0 0 8px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .wc-canvas {
@@ -67,13 +136,27 @@ body {
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 247, 255, 0.2), rgba(0,0,0,0));
+  background: radial-gradient(circle, rgba(0, 247, 255, 0.2), rgba(0, 0, 0, 0));
   filter: drop-shadow(0 0 24px rgba(0, 247, 255, 0.6));
   z-index: -1;
 }
-.nb-1 { top: -40px; left: -60px; }
-.nb-2 { bottom: -30px; right: -40px; }
-.nb-3 { top: 35%; right: 20%; width: 200px; height: 200px; }
+
+.nb-1 {
+  top: -40px;
+  left: -60px;
+}
+
+.nb-2 {
+  bottom: -30px;
+  right: -40px;
+}
+
+.nb-3 {
+  top: 35%;
+  right: 20%;
+  width: 200px;
+  height: 200px;
+}
 
 /* Levels layout */
 .level-path {
@@ -83,27 +166,19 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  overflow-x: auto;
+  overflow-x: auto;   /* enable horizontal scroll */
+  overflow-y: hidden;
   width: 100%;
   min-height: 400px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 238, 255, 0.6) rgba(0, 0, 0, 0.2);
+
+  scrollbar-width: none; /* Firefox: hide scrollbar */
 }
 
+/* Chrome, Safari, Edge */
 .level-path::-webkit-scrollbar {
-  height: 12px;
+  display: none;
 }
 
-.level-path::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.level-path::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 238, 255, 0.6);
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-}
 
 .level {
   position: relative;
@@ -115,20 +190,31 @@ body {
   width: 280px;
   height: 280px;
   background: url('island.png') center/contain no-repeat;
-  border: 0;
-  border-radius: 18px;
+  content: none !important;
+  border: none !important;
+  
   cursor: pointer;
   filter: drop-shadow(0 0 40px rgba(0, 238, 255, 0.9));
-  transition: transform .25s ease, filter .25s ease, opacity .25s ease;
+  transition: transform .25s ease, filter .25s ease, opacity .25s ease, border-color .25s ease;
+  position: relative;
+  overflow: visible;
+}
+.island::before {
+  content: none !important;
+  border: none !important;
+  background: none !important;
 }
 
-.island:hover { transform: translateY(-4px) scale(1.05); }
+
+.island:hover {
+  transform: translateY(-2px) scale(1.05);
+}
 
 /* Lock state styling */
 .level.locked .island {
   cursor: not-allowed;
   opacity: 0.1;
-  filter: grayscale(40%) brightness(0.85) drop-shadow(0 0 8px rgba(0,0,0,0.8));
+  filter: grayscale(40%) brightness(0.85) drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
 }
 
 /* Current level highlight styling */
@@ -139,10 +225,66 @@ body {
 }
 
 
+/* --- START BUTTON STYLING --- */
+
+/* Hide all start buttons by default */
+.Start-btn {
+  display: none;
+  background: rgba(0, 229, 255, 0.2);
+  border: 1px solid rgba(0, 229, 255, 0.6);
+  color: #E8F9FF;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 12px;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.6),
+              inset 0 0 6px rgba(0, 229, 255, 0.3);
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 50%;
+  bottom: -30px;  /* positions button below the "Level X" label */
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Show only on current level */
+.level.current .Start-btn {
+  display: inline-block;
+}
+
+/* Hover effect */
+.level.current .Start-btn:hover {
+  background: rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.8),
+              inset 0 0 8px rgba(0, 229, 255, 0.4);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Optional: pulse animation to grab attention */
+@keyframes start-pulse {
+  0% {
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.6),
+                inset 0 0 6px rgba(0, 229, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.9),
+                inset 0 0 10px rgba(0, 229, 255, 0.4);
+  }
+}
+
+.level.current .Start-btn {
+  animation: start-pulse 1.5s infinite alternate;
+}
 
 @keyframes pulse-current {
-  0% { filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.9)) brightness(1.2); }
-  100% { filter: drop-shadow(0 0 40px rgba(0, 255, 255, 1)) brightness(1.3); }
+  0% {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.9)) brightness(1.2);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 40px rgba(0, 255, 255, 1)) brightness(1.3);
+  }
 }
 
 /* Level labels using data-level attribute */
@@ -150,14 +292,18 @@ body {
   content: 'Level ' attr(data-level);
   position: absolute;
   left: 50%;
-  bottom: 50px; /* Position even closer to the bottom of the island */
-  transform: translate(-50%, 100%); /* Move text below the island */
+  bottom: 50px;
+  /* Position even closer to the bottom of the island */
+  transform: translate(-50%, 100%);
+  /* Move text below the island */
   font-weight: 700;
-  font-size: 16px; /* Slightly larger font */
+  font-size: 16px;
+  /* Slightly larger font */
   letter-spacing: 0.5px;
   color: #CFFBFF;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 18px rgba(0, 180, 255, 0.6);
-  z-index: 1; /* Ensure text appears above other elements */
+  z-index: 1;
+  /* Ensure text appears above other elements */
 }
 
 /* Connector lines between levels */
@@ -176,7 +322,9 @@ body {
   z-index: -1;
 }
 
-.level:last-child::after { display: none; }
+.level:last-child::after {
+  display: none;
+}
 
 /* Ensure all islands are visible in the horizontal layout */
 .wc-container {
@@ -188,16 +336,38 @@ body {
 
 /* Responsive tweaks */
 @media (max-width: 900px) {
-  .island { width: 220px; height: 220px; }
-  .level::after { width: 40px; }
-  .level-path { min-height: 300px; }
+  .island {
+    width: 220px;
+    height: 220px;
+  }
+
+  .level::after {
+    width: 40px;
+  }
+
+  .level-path {
+    min-height: 300px;
+  }
 }
 
 @media (max-width: 600px) {
-  .island { width: 180px; height: 180px; }
-  .level::after { width: 30px; }
-  .level { margin: 0 25px; }
-  .level-path { min-height: 250px; padding: 10px; }
+  .island {
+    width: 180px;
+    height: 180px;
+  }
+
+  .level::after {
+    width: 30px;
+  }
+
+  .level {
+    margin: 0 25px;
+  }
+
+  .level-path {
+    min-height: 250px;
+    padding: 10px;
+  }
 }
 
 /* Extra neon vector accents */
@@ -207,11 +377,23 @@ body {
   position: absolute;
   pointer-events: none;
   border-radius: 999px;
-  background: radial-gradient(closest-side, rgba(0, 255, 210, 0.35), rgba(0,0,0,0));
+  background: radial-gradient(closest-side, rgba(0, 255, 210, 0.35), rgba(0, 0, 0, 0));
   filter: drop-shadow(0 0 24px rgba(0, 255, 210, 0.7));
 }
-.wc-canvas::before { width: 260px; height: 260px; top: 8%; left: 10%; }
-.wc-canvas::after { width: 200px; height: 200px; bottom: 12%; right: 14%; }
+
+.wc-canvas::before {
+  width: 260px;
+  height: 260px;
+  top: 8%;
+  left: 10%;
+}
+
+.wc-canvas::after {
+  width: 200px;
+  height: 200px;
+  bottom: 12%;
+  right: 14%;
+}
 
 /* Additional neon vectors */
 .neon-line {
@@ -222,13 +404,37 @@ body {
   animation: pulse 3s ease-in-out infinite;
 }
 
-.neon-line-1 { top: 20%; left: 0; width: 30%; transform: rotate(-15deg); }
-.neon-line-2 { top: 60%; right: 0; width: 25%; transform: rotate(20deg); }
-.neon-line-3 { bottom: 30%; left: 20%; width: 40%; transform: rotate(5deg); }
+.neon-line-1 {
+  top: 20%;
+  left: 0;
+  width: 30%;
+  transform: rotate(-15deg);
+}
+
+.neon-line-2 {
+  top: 60%;
+  right: 0;
+  width: 25%;
+  transform: rotate(20deg);
+}
+
+.neon-line-3 {
+  bottom: 30%;
+  left: 20%;
+  width: 40%;
+  transform: rotate(5deg);
+}
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Floating neon particles */
@@ -242,15 +448,46 @@ body {
   animation: float 4s ease-in-out infinite;
 }
 
-.particle-1 { top: 15%; left: 15%; animation-delay: 0s; }
-.particle-2 { top: 25%; right: 20%; animation-delay: 1s; }
-.particle-3 { bottom: 20%; left: 30%; animation-delay: 2s; }
-.particle-4 { bottom: 40%; right: 10%; animation-delay: 3s; }
-.particle-5 { top: 50%; left: 5%; animation-delay: 1.5s; }
+.particle-1 {
+  top: 15%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 25%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.particle-3 {
+  bottom: 20%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+.particle-4 {
+  bottom: 40%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.particle-5 {
+  top: 50%;
+  left: 5%;
+  animation-delay: 1.5s;
+}
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-20px) scale(1.2); }
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.2);
+  }
 }
 
 /* Neon wave effects */
@@ -258,23 +495,61 @@ body {
   position: absolute;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(0, 255, 255, 0.6), 
-    rgba(0, 255, 255, 0.8), 
-    rgba(0, 255, 255, 0.6), 
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(0, 255, 255, 0.6),
+      rgba(0, 255, 255, 0.8),
+      rgba(0, 255, 255, 0.6),
+      transparent);
   filter: drop-shadow(0 0 16px rgba(0, 255, 255, 0.7));
   animation: wave 6s linear infinite;
 }
 
-.wave-1 { top: 30%; animation-delay: 0s; }
-.wave-2 { top: 70%; animation-delay: 2s; }
-
-@keyframes wave {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+.wave-1 {
+  top: 30%;
+  animation-delay: 0s;
 }
 
+.wave-2 {
+  top: 70%;
+  animation-delay: 2s;
+}
 
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Enhanced neon grid effect */
+.wc-canvas::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(0, 195, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 195, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  opacity: 0.4;
+  animation: grid-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes grid-pulse {
+  0% {
+    opacity: 0.2;
+    background-size: 40px 40px;
+  }
+
+  100% {
+    opacity: 0.5;
+    background-size: 42px 42px;
+  }
+}
