@@ -55,7 +55,7 @@
     <div class="her-content">
       <div class="content">
         <h1>Start Your Eco Journey</h1>
-        <button class="btn-primary">GET STARTED</button>
+        <button id="getStartedBtn" class="btn-primary" onclick="openSignup()">GET STARTED</button>
         <!-- Open Sign In Modal -->
         <button class="btn-secondary" onclick="openSignin()">I ALREADY HAVE AN ACCOUNT</button>
       </div>
@@ -122,17 +122,6 @@
           </p>
         </div>
       </div>
-       <!-- Bottom Start Modules Button -->
-<div class="bottom-btn">
-  <button id="startModulesBtn" class="btn-primary">START MODULES</button>
-</div>
-
-<script>
-  document.getElementById("startModulesBtn").addEventListener("click", () => {
-    window.location.href = "chooseModule.html";
-  });
-</script>
-
 
     </div>
   </section>
@@ -164,7 +153,6 @@
         <p><a href="#">Forgot Password?</a></p>
       </div>
     </div>
-
   </div>
 
   <!-- 🔹 Sign Up Modal -->
@@ -243,29 +231,6 @@
       mv.addEventListener('touchstart', disableInteractionOnce, { once: true, passive: false });
     });
   </script>
-  <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const msg = localStorage.getItem("authMessage");
-    if (msg) {
-      // Show modal
-      document.querySelector(".modal").style.display = "flex";
-
-      // If you have an error container in modal, put message there
-      let errorBox = document.getElementById("signinError");
-      if (!errorBox) {
-        errorBox = document.createElement("p");
-        errorBox.id = "signinError";
-        errorBox.style.color = "red";
-        errorBox.style.marginTop = "10px";
-        document.querySelector(".modal-content").appendChild(errorBox);
-      }
-      errorBox.textContent = msg;
-
-      // Clear message after showing
-      localStorage.removeItem("authMessage");
-    }
-  });
-</script>
-
+  <script src="ecoquest-auth.js" defer></script>
 </body>
 </html>

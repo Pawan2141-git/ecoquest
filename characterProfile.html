@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="cod-home.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Compact, military-style font pairing -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="characterProfile.css">
+</head>
+<body>
+    <header>
+        <!-- Username Banner -->
+        <section class="username-banner">
+            <div class="banner-left">
+                <p>
+                Welcome, <span class="username">Abhirup</span> 🌱 · 
+                Level: <span class="userlevel">5</span>
+                </p>
+            </div>
+            <div class="banner-right">
+                <button class="btn btn--logout">Logout</button>
+                <button class="btn btn--close" onclick="window.location.href='index.html'">✕ Close</button>
+            </div>
+        </section>
+    </header>
+    
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__bg">
+      <!-- Replace with your operator/hero image -->
+      <img src="char1.jpeg" alt="Operator" class="hero__img">
+      <div class="hero__scanlines"></div>
+      <div class="hero__gradient"></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        MISSION <span>EARTH GUARDIANS</span>
+      </h1>
+      <p class="hero__subtitle">
+        Embark on a gamified journey to protect the planet — learn, play, and take action to build a greener future.
+      </p>
+      <div class="hero__cta">
+        <a href="chooseModule.html" class="btn btn--primary">Quick Learn</a>
+        <a href="#" class="btn btn--ghost">My Community</a>
+      </div>
+      <div class="hero__hudline">
+        <span class="blip"></span>
+        <span id="eco-status"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modes Grid -->
+  <section class="modes">
+    <h2 class="section__title">Character Modes</h2>
+    <div class="modes__grid">
+      <article class="mode">
+        <div class="mode__bg" style="background-image:url('char2.jpeg')"></div>
+        <div class="mode__overlay"></div>
+        <div class="mode__content">
+            <!-- 2-d Image here -->
+          <h3>Character Name</h3>
+          <p>Character Description</p>
+          <a href="#" class="btn btn--small">Select</a>
+        </div>
+      </article>
+      <article class="mode">
+        <div class="mode__bg" style="background-image:url('char3.jpeg')"></div>
+        <div class="mode__overlay"></div>
+        <div class="mode__content">
+            <!-- 2-d Image here -->
+          <h3>Character Name</h3>
+          <p>Character Description</p>
+          <a href="#" class="btn btn--small">Select</a>
+        </div>
+      </article>
+      <article class="mode">
+        <div class="mode__bg" style="background-image:url('char4.jpeg')"></div>
+        <div class="mode__overlay"></div>
+        <div class="mode__content">
+            <!-- 2-d Image here -->
+          <h3>Character Name</h3>
+          <p>Character Description</p>
+          <a href="#" class="btn btn--small">Select</a>
+        </div>
+      </article>
+      <article class="mode">
+        <div class="mode__bg" style="background-image:url('char5.jpeg')"></div>
+        <div class="mode__overlay"></div>
+        <div class="mode__content">
+            <!-- 2-d Image here -->
+          <h3>Character Name</h3>
+          <p>Character Description.</p>
+          <a href="#" class="btn btn--small">Select</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Battle Pass / Featured -->
+  <section class="pass">
+    <div class="pass__card">
+        <div class="pass__left">
+            <h3 class="pass__title">EcoPoints Progress</h3>
+            <p class="pass__desc">Track your impact and unlock rewards for saving nature.</p>
+            
+            <div class="pass__progress">
+                <span class="pass__bar"><i style="width:72%"></i></span>
+                <span class="pass__pct">1250 / 1500 EcoPoints</span>
+            </div>
+            
+            <p class="pass__next">Next reward unlocks at <b>1500 EcoPoints</b> · You’re almost there!</p>
+            
+            <div class="pass__cta">
+                <a href="rewards.html" class="btn btn--primary">View Rewards</a>
+                <a href="rewards.html" class="btn btn--ghost">Earn More</a>
+            </div>
+        </div>
+    <div class="pass__right">
+        <div class="crate">
+            <span class="crate__label">COMMUNITY SPOTLIGHT</span>
+            <h4 class="crate__title">Join the EcoQuest Community</h4>
+            <p class="crate__meta">Connect with eco-warriors • Share ideas • Inspire change</p>
+            <a href="#" class="btn btn--small">Join Now</a>
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+  <div class="footer__left">
+    <span class="dot dot--green"></span> Planet Health: Active
+    <span class="sep"></span>
+    <span class="dot"></span> Community Missions: Ongoing
+  </div>
+  <div class="footer__right">
+    EcoQuest v1.0.0 • Together for a Greener Future
+  </div>
+</footer>
+
+  <script>
+        const messages = [
+            "EARTH STATUS: CRITICAL · YOUR IMPACT: NEEDED · MISSION: GO GREEN",
+            "WATER SAVED: 0L · TREES PLANTED: 0 · CARBON REDUCED: 0kg",
+            "JOIN A QUEST · COMPLETE MISSIONS · EARN ECO POINTS",
+            "TOGETHER WE CAN RESTORE NATURE · START YOUR JOURNEY NOW"
+        ];
+
+        let index = 0;
+        const statusEl = document.getElementById("eco-status");
+
+        function rotateMessage() {
+            statusEl.innerHTML = messages[index];
+            index = (index + 1) % messages.length;
+        }
+
+        // show first message immediately
+        rotateMessage();
+        // rotate every 4 seconds
+        setInterval(rotateMessage, 4000);
+    </script>
+    <script src="ecoquest-auth.js" defer></script>
+</body>
+</html>
