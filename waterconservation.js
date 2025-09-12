@@ -20,54 +20,67 @@
       item.classList.add('current');
     }
 
-    // For horizontal layout, we don't need to compute vectors
-    // Just add connector elements for the horizontal layout
+    // Compute vector to next item and add water droplets
     var next = items[idx + 1];
     if (next) {
-      // Add horizontal connector with fixed width
-      var connector = document.createElement('div');
-      connector.className = 'horizontal-connector';
-      if (level <= maxUnlocked) {
-        connector.classList.add('completed');
+      var getPos = function (el) {
+        var styles = window.getComputedStyle(el);
+        var x = parseFloat(styles.getPropertyValue('--x'));
+        var y = parseFloat(styles.getPropertyValue('--y'));
+        return { x: x, y: y };
+      };
+      var a = getPos(item);
+      var b = getPos(next);
+      if (!isNaN(a.x) && !isNaN(a.y) && !isNaN(b.x) && !isNaN(b.y)) {
+        var dx = b.x - a.x;
+        var dy = b.y - a.y;
+        // Convert percentage delta into px length based on viewport
+        var len = Math.sqrt(Math.pow(dx * window.innerWidth / 100, 2) + Math.pow(dy * window.innerHeight / 100, 2));
+        var angle = Math.atan2((dy * window.innerHeight / 100), (dx * window.innerWidth / 100)) * 180 / Math.PI;
+        item.style.setProperty('--len', Math.max(120, Math.min(500, len)) + 'px');
+        item.style.setProperty('--angle', angle + 'deg');
+        
+        // Add water droplet elements with proper positioning
+        var droplet1 = document.createElement('div');
+        droplet1.className = 'water-droplet';
+        // Set style to ensure it's positioned correctly
+        droplet1.style.transform = 'translateY(-50%) rotate(' + angle + 'deg)';
+        item.appendChild(droplet1);
+        
+        var droplet2 = document.createElement('div');
+        droplet2.className = 'water-droplet';
+        // Set style to ensure it's positioned correctly
+        droplet2.style.transform = 'translateY(-50%) rotate(' + angle + 'deg)';
+        item.appendChild(droplet2);
       }
-      item.appendChild(connector);
-      
-      // Add water droplet elements with horizontal positioning
-      var droplet1 = document.createElement('div');
-      droplet1.className = 'water-droplet';
-      // Set style for horizontal layout
-      droplet1.style.transform = 'translateY(-50%)';
-      item.appendChild(droplet1);
-      
-      var droplet2 = document.createElement('div');
-      droplet2.className = 'water-droplet';
-      // Set style for horizontal layout
-      droplet2.style.transform = 'translateY(-50%)';
-      item.appendChild(droplet2);
     }
   });
 
-  // Clicking an unlocked level: simulate completion and unlock next level
+ 
+  // Clicking the Start button on the current level: complete and unlock next
   path.addEventListener('click', function (e) {
-    var btn = e.target.closest('.island');
+    var btn = e.target.closest('.Start-btn');
     if (!btn) return;
+
     var li = btn.closest('.level');
     if (!li || li.classList.contains('locked')) return;
 
     var current = parseInt(li.getAttribute('data-level') || '0', 10);
     var next = current + 1;
+
     if (next > maxUnlocked) {
       maxUnlocked = next;
       localStorage.setItem(STORAGE_KEY, String(maxUnlocked));
-      // unlock next li if exists
+
+      // Unlock next li if it exists
       var nextLi = path.querySelector('.level[data-level="' + next + '"]');
       if (nextLi) {
         nextLi.classList.remove('locked');
         var nextBtn = nextLi.querySelector('.island');
         if (nextBtn) nextBtn.removeAttribute('aria-disabled');
-        
+
         // Update current level highlight
-        document.querySelectorAll('.level.current').forEach(function(el) {
+        document.querySelectorAll('.level.current').forEach(function (el) {
           el.classList.remove('current');
         });
         nextLi.classList.add('current');
