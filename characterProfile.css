@@ -285,6 +285,16 @@ body{
 .mode:hover{
     box-shadow:0 0 26px rgba(41,225,0,.18) inset, 0 6px 30px rgba(0,0,0,.4)
 }
+
+.mode.selected {
+    box-shadow: 0 0 30px rgba(41,225,0,.4) inset, 0 0 20px rgba(41,225,0,.3);
+    border: 2px solid var(--accent);
+}
+
+.mode.selected .mode__content h3 {
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(41,225,0,.5);
+}
 .mode__img {
   display: block;
   width: 100%;

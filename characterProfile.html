@@ -64,9 +64,9 @@
         <div class="mode__overlay"></div>
         <div class="mode__content">
             <!-- 2-d Image here -->
-          <h3>Character Name</h3>
-          <p>Character Description</p>
-          <a href="#" class="btn btn--small">Select</a>
+          <h3>Eco Warrior</h3>
+          <p>Forest Guardian</p>
+          <a href="#" class="btn btn--small character-select" data-character="1">Select</a>
         </div>
       </article>
       <article class="mode">
@@ -74,9 +74,9 @@
         <div class="mode__overlay"></div>
         <div class="mode__content">
             <!-- 2-d Image here -->
-          <h3>Character Name</h3>
-          <p>Character Description</p>
-          <a href="#" class="btn btn--small">Select</a>
+          <h3>Ocean Protector</h3>
+          <p>Marine Life Defender</p>
+          <a href="#" class="btn btn--small character-select" data-character="2">Select</a>
         </div>
       </article>
       <article class="mode">
@@ -84,9 +84,9 @@
         <div class="mode__overlay"></div>
         <div class="mode__content">
             <!-- 2-d Image here -->
-          <h3>Character Name</h3>
-          <p>Character Description</p>
-          <a href="#" class="btn btn--small">Select</a>
+          <h3>Air Guardian</h3>
+          <p>Pollution Fighter</p>
+          <a href="#" class="btn btn--small character-select" data-character="3">Select</a>
         </div>
       </article>
       <article class="mode">
@@ -94,9 +94,9 @@
         <div class="mode__overlay"></div>
         <div class="mode__content">
             <!-- 2-d Image here -->
-          <h3>Character Name</h3>
-          <p>Character Description.</p>
-          <a href="#" class="btn btn--small">Select</a>
+          <h3>Earth Keeper</h3>
+          <p>Wildlife Protector</p>
+          <a href="#" class="btn btn--small character-select" data-character="4">Select</a>
         </div>
       </article>
     </div>
@@ -164,6 +164,37 @@
         rotateMessage();
         // rotate every 4 seconds
         setInterval(rotateMessage, 4000);
+    </script>
+    <script>
+      // Character selection
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.character-select').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const character = this.dataset.character;
+            const characterName = this.parentElement.querySelector('h3').textContent;
+            
+            // Save selected character
+            localStorage.setItem('eq_selected_character', character);
+            localStorage.setItem('eq_character_name', characterName);
+            
+            // Visual feedback
+            document.querySelectorAll('.mode').forEach(mode => mode.classList.remove('selected'));
+            this.closest('.mode').classList.add('selected');
+            
+            alert(`Character "${characterName}" selected!`);
+          });
+        });
+        
+        // Show previously selected character
+        const selectedChar = localStorage.getItem('eq_selected_character');
+        if (selectedChar) {
+          const selectedBtn = document.querySelector(`[data-character="${selectedChar}"]`);
+          if (selectedBtn) {
+            selectedBtn.closest('.mode').classList.add('selected');
+          }
+        }
+      });
     </script>
     <script src="ecoquest-auth.js" defer></script>
 </body>

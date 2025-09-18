@@ -62,28 +62,50 @@
   <button class="close-btn" onclick="window.location.href='index.html'">✕ Close</button>
   
   <script>
-  // ✅ Mapping module keys to actual HTML files
-  const modulePages = {
-    water: "waterconservation.html",   // 🔥 updated file name
-    air: "airModule.html",
-    waste: "wasteModule.html",
-    laws: "lawsModule.html",
-    life: "biodiversityModule.html"
-  };
+  document.addEventListener('DOMContentLoaded', function() {
+    // Module pages mapping
+    const modulePages = {
+      water: "waterconservation.html",
+      air: "airModule.html",
+      waste: "wasteModule.html",
+      laws: "lawsModule.html",
+      life: "biodiversityModule.html"
+    };
 
-  // Add click listeners to all Start buttons
-  document.querySelectorAll(".startBtn").forEach(btn => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const moduleKey = this.parentElement.dataset.key;
+    // Add click listeners to all modules (both hit area and start button)
+    document.querySelectorAll(".module").forEach(module => {
+      const moduleKey = module.dataset.key;
       const targetPage = modulePages[moduleKey];
+      
+      // Make entire module clickable
+      module.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (targetPage) {
+          window.location.href = targetPage;
+        } else {
+          alert("⚠️ Module not available yet!");
+        }
+      });
+      
+      // Add hover effect
+      module.style.cursor = "pointer";
+    });
 
-      if (targetPage) {
-        window.location.href = targetPage; // ✅ redirect to correct module file
-      } else {
-        alert("⚠️ Module not available yet!");
-      }
+    // Also handle individual start buttons
+    document.querySelectorAll(".startBtn").forEach(btn => {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent double click
+        
+        const moduleKey = this.parentElement.dataset.key;
+        const targetPage = modulePages[moduleKey];
+
+        if (targetPage) {
+          window.location.href = targetPage;
+        } else {
+          alert("⚠️ Module not available yet!");
+        }
+      });
     });
   });
   </script>

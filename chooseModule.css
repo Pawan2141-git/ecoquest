@@ -104,6 +104,7 @@ header p {
     transform-style: preserve-3d;
     backface-visibility: hidden;
     will-change: transform;
+    cursor: pointer;
 }
 
 .module:hover {
